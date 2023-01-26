@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="can" width="500" height="500"></canvas>
+    <button id="nvm">Clear</button>
+    <button id="nvm2">Zelena</button>
+</body>
+
+<script>
+    var canvas = document.getElementById('can');
+    var button =  document.getElementById('nvm');
+    var buttonaz =  document.getElementById('nvm2');
+    var ctx = canvas.getContext('2d');
+
+    var pos = { x: 0, y: 0 };
+
+    document.addEventListener('mousemove', draw);
+    document.addEventListener('mousedown', setPosition);
+    document.addEventListener('mouseenter', setPosition);
+
+    function setPosition(e) {
+    pos.x = e.clientX - canvas.offsetLeft;
+    pos.y = e.clientY - canvas.offsetTop;
+    }
+
+    button.addEventListener("click", clear)
+
+    function clear() {
+        ctx.clearRect(0,0, canvas.offsetWidth, canvas.offsetHeight)
+    }
+
+    buttonaz.addEventListener("click", zelenabarva)
+    
+    function zelenabarva() {
+        ctx.strokeStyle = 'green';
+    }
+
+    function draw(e) {
+
+    if (e.buttons !== 1) return;
+
+    ctx.beginPath(); 
+
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'black';
+
+    ctx.moveTo(pos.x, pos.y); 
+    setPosition(e);
+    ctx.lineTo(pos.x, pos.y); 
+
+    ctx.stroke();
+    }
+</script>
+
+</html>

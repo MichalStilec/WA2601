@@ -1,0 +1,14 @@
+body {
+    height: 98.2vh;
+}
+
+#can {
+    display: block;
+    margin: 0 auto;
+    border:2px solid black;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}
